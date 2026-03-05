@@ -1,0 +1,21 @@
+services:
+  ros2_humble:
+    image: tb3_humble:latest
+    container_name: ugrp_dev
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - TURTLEBOT3_MODEL=burger
+      # Intel Arc iGPU 드라이버 미지원 → CPU 소프트웨어 렌더링 강제
+      - LIBGL_ALWAYS_SOFTWARE=1
+      - GALLIUM_DRIVER=llvmpipe
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./ros2_ws:/ros2_ws
+      - ~/.bash_history:/root/.bash_history
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
