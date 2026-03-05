@@ -56,8 +56,8 @@ chmod +x setup.sh
 # X11 GUI 권한 허용
 xhost +local:docker
 
-# Docker 이미지 빌드
-docker build -t tb3_humble:latest ./docker/
+# Docker 이미지 빌드 (docker-compose.yml 기준으로 자동 빌드)
+docker compose build
 
 # ROS2 워크스페이스 빌드
 docker compose run --rm ros2_humble bash -c \
@@ -97,6 +97,24 @@ docker compose exec ros2_humble bash
 ### 컨테이너 종료
 ```bash
 docker compose down
+```
+
+---
+
+## 🖥️ GPU 설정 (노트북마다 다름!)
+
+`docker-compose.yml` 안의 GPU 설정을 본인 환경에 맞게 조정하세요:
+
+**Intel iGPU (Gazebo 화면 안 열릴 때)**
+```yaml
+environment:
+  - LIBGL_ALWAYS_SOFTWARE=1   # ← 주석 해제
+  - GALLIUM_DRIVER=llvmpipe   # ← 주석 해제
+```
+
+**NVIDIA / AMD GPU**
+```yaml
+# 위 두 줄은 주석 처리 상태로 유지
 ```
 
 ---
