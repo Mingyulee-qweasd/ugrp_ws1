@@ -1,10 +1,8 @@
-# ROS2 build files
 ros2_ws/build/
 ros2_ws/install/
 ros2_ws/log/
-
-# Docker/System files
-.DS_Store
-.vscode/
+ros2_ws/map_outputs/
+ros2_ws/frames_*
 __pycache__/
 *.pyc
+.colcon/

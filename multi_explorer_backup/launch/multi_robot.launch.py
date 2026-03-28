@@ -1,4 +1,3 @@
-#gazebo + 로봇 스폰
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
